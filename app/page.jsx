@@ -1,7 +1,10 @@
 'use client'
 
 import dynamic from 'next/dynamic'
+import Link from 'next/link'
 import { Suspense } from 'react'
+import Lottie from 'lottie-react'
+import lDarkAnimation from '/public/lDark.json'
 
 const Logo = dynamic(() => import('@/components/canvas/Examples').then((mod) => mod.Logo), { ssr: false })
 const Dog = dynamic(() => import('@/components/canvas/Examples').then((mod) => mod.Dog), { ssr: false })
@@ -10,7 +13,7 @@ const View = dynamic(() => import('@/components/canvas/View').then((mod) => mod.
   ssr: false,
   loading: () => (
     <div className='flex h-96 w-full flex-col items-center justify-center'>
-      <svg className='-ml-1 mr-3 h-5 w-5 animate-spin text-black' fill='none' viewBox='0 0 24 24'>
+      <svg className='-ml-1 mr-3 size-5 animate-spin text-black' fill='none' viewBox='0 0 24 24'>
         <circle className='opacity-25' cx='12' cy='12' r='10' stroke='currentColor' strokeWidth='4' />
         <path
           className='opacity-75'
@@ -28,6 +31,11 @@ export default function Page() {
     <>
       <div className='mx-auto flex w-full flex-col flex-wrap items-center md:flex-row  lg:w-4/5'>
         {/* jumbo */}
+        {/* Lottie Animation */}
+        <div className='w-full md:w-1/2'>
+          <Lottie animationData={lDarkAnimation} loop={true} autoplay={true} />
+        </div>
+        <Link href={'/outside'}>OUTSIDE</Link>
         <div className='flex w-full flex-col items-start justify-center p-12 text-center md:w-2/5 md:text-left'>
           <p className='w-full uppercase'>Next + React Three Fiber</p>
           <h1 className='my-4 text-5xl font-bold leading-tight'>Next 3D Starter</h1>
